@@ -36,12 +36,7 @@ public class DepartmentDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			EndConnection(conn, stmt, rs);
 		}
 	}
 	
@@ -66,12 +61,7 @@ public class DepartmentDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			EndConnection(conn, stmt, rs);
 		}
 	}
 	
@@ -96,12 +86,7 @@ public class DepartmentDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			EndConnection(conn, stmt, rs);
 		}
 	}
 	
@@ -152,12 +137,7 @@ public class DepartmentDAO {
 			
 			return department.getIdDepartment();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			EndConnection(conn, stmt, rs);
 		}
 	}
 	
@@ -175,6 +155,15 @@ public class DepartmentDAO {
 		department.setInitials(rs.getString("initials"));
 		
 		return department;
+	}
+
+	public EndConnection(Connection conn, PreparedStatement stmt, ResultSet rs){
+		if((rs != null) && !rs.isClosed())
+				rs.close();
+			if((stmt != null) && !stmt.isClosed())
+				stmt.close();
+			if((conn != null) && !conn.isClosed())
+				conn.close();
 	}
 	
 }
