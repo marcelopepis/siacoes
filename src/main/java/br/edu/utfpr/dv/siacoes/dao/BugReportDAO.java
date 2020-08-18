@@ -117,7 +117,7 @@ public class BugReportDAO {
 	private BugReport loadObject(ResultSet rs) throws SQLException{
 		BugReport bug = new BugReport();
 		
-		bug.setIdBugReport(rs.getInt("idBugReport"));
+    bug.setIdBugReport(rs.getInt("idBugReport"));
 		bug.setUser(new User());
 		bug.getUser().setIdUser(rs.getInt("idUser"));
 		bug.getUser().setName(rs.getString("name"));
@@ -128,18 +128,18 @@ public class BugReportDAO {
 		bug.setType(BugReport.BugType.valueOf(rs.getInt("type")));
 		bug.setStatus(BugReport.BugStatus.valueOf(rs.getInt("status")));
 		bug.setStatusDate(rs.getDate("statusDate"));
-		bug.setStatusDescription(rs.getString("statusDescription"));
+		bug.setStatusDescription(rs.getString("statusDescription"));		
 		
 		return bug;
 	}
 
 	public EndConnection(Connection conn, PreparedStatement stmt, ResultSet rs){
 		if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
-	}
+			rs.close();
+		if((stmt != null) && !stmt.isClosed())
+			stmt.close();
+		if((conn != null) && !conn.isClosed())
+			conn.close();
+}
 
 }
