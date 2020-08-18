@@ -330,11 +330,11 @@ public class ActivityDAO {
 
 	public EndConnection(Connection conn, PreparedStatement stmt, ResultSet rs){
 		if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			rs.close();
+		if((stmt != null) && !stmt.isClosed())
+			stmt.close();
+		if((conn != null) && !conn.isClosed())
+			conn.close();
 	}
 
 }
