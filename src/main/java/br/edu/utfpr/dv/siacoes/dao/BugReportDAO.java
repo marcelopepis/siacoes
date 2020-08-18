@@ -37,12 +37,7 @@ public class BugReportDAO {
 				return null;
 			}
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			EndConnection(conn, stmt, rs);
 		}
 	}
 	
@@ -66,12 +61,7 @@ public class BugReportDAO {
 			
 			return list;
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			EndConnection(conn, stmt, rs);
 		}
 	}
 	
@@ -120,12 +110,7 @@ public class BugReportDAO {
 			
 			return bug.getIdBugReport();
 		}finally{
-			if((rs != null) && !rs.isClosed())
-				rs.close();
-			if((stmt != null) && !stmt.isClosed())
-				stmt.close();
-			if((conn != null) && !conn.isClosed())
-				conn.close();
+			EndConnection(conn, stmt, rs);
 		}
 	}
 	
@@ -146,6 +131,15 @@ public class BugReportDAO {
 		bug.setStatusDescription(rs.getString("statusDescription"));
 		
 		return bug;
+	}
+
+	public EndConnection(Connection conn, PreparedStatement stmt, ResultSet rs){
+		if((rs != null) && !rs.isClosed())
+				rs.close();
+			if((stmt != null) && !stmt.isClosed())
+				stmt.close();
+			if((conn != null) && !conn.isClosed())
+				conn.close();
 	}
 
 }
